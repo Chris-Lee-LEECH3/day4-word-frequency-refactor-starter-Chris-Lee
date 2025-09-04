@@ -12,7 +12,7 @@ public class WordFrequencyGame {
 
         try {
             List<Input> frequencies = countFrequencies(words);
-            frequencies.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
+            frequencies.sort((w1, w2) -> w2.count() - w1.count());
             return composeOutput(frequencies);
         } catch (Exception e) {
             return "Calculate Error";
@@ -22,7 +22,7 @@ public class WordFrequencyGame {
     private static String composeOutput(List<Input> frequencies) {
         StringJoiner joiner = new StringJoiner("\n");
         for (Input word : frequencies) {
-            String s = word.getValue() + " " + word.getWordCount();
+            String s = word.value() + " " + word.count();
             joiner.add(s);
         }
         return joiner.toString();
