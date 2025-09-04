@@ -1,3 +1,4 @@
+import javax.management.ValueExp;
 import java.util.*;
 
 public class WordFrequencyGame {
@@ -43,12 +44,8 @@ public class WordFrequencyGame {
     private static Map<String, Integer> groupSameWords(String[] words) {
         Map<String, Integer> groups = new HashMap<>();
         for (String word : words) {
-            if (!groups.containsKey(word)) {
-                groups.put(word, 1);
-            } else {
-                Integer count = groups.get(word);
-                groups.put(word, ++count);
-            }
+            groups.computeIfPresent(word, (key, count) -> ++count);
+            groups.computeIfAbsent(word, key -> 1);
         }
         return groups;
     }
