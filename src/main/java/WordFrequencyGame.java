@@ -8,18 +8,14 @@ public class WordFrequencyGame {
 
         if (words.length == 1) {
             return inputStr + " 1";
-        } else {
-            try {
-                //split the input string with 1 to n pieces of spaces
+        }
 
-                List<Input> frequencies = countFrequencies(words);
-
-                frequencies.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
-
-                return composeOutput(frequencies);
-            } catch (Exception e) {
-                return "Calculate Error";
-            }
+        try {
+            List<Input> frequencies = countFrequencies(words);
+            frequencies.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
+            return composeOutput(frequencies);
+        } catch (Exception e) {
+            return "Calculate Error";
         }
     }
 
@@ -36,7 +32,7 @@ public class WordFrequencyGame {
         Map<String, Integer> groups = groupSameWords(words);
         List<Input> frequencies = new ArrayList<>();
 
-        for (String key: groups.keySet()) {
+        for (String key : groups.keySet()) {
             Input input = new Input(key, groups.get(key));
             frequencies.add(input);
         }
@@ -46,7 +42,7 @@ public class WordFrequencyGame {
 
     private static Map<String, Integer> groupSameWords(String[] words) {
         Map<String, Integer> groups = new HashMap<>();
-        for (String word: words) {
+        for (String word : words) {
             if (!groups.containsKey(word)) {
                 groups.put(word, 1);
             } else {
