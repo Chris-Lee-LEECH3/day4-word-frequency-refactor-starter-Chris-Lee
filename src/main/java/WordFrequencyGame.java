@@ -1,8 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.StringJoiner;
+import java.util.*;
 
 public class WordFrequencyGame {
     public static final String ANY_SPACE_SEPARATOR = "\\s+";
@@ -45,20 +41,20 @@ public class WordFrequencyGame {
 
     private static Map<String, List<String>> groupSameWords(String[] words) {
         List<String> inputList = new ArrayList<>();
-        for (String s : words) {
-            inputList.add(s);
+        for (String word : words) {
+            inputList.add(word);
         }
 
         //get the map for the next step of sizing the same word
         Map<String, List<String>> groups = new HashMap<>();
-        for (String input1 : inputList) {
+        for (String input : inputList) {
 //       map.computeIfAbsent(input.getValue(), k -> new ArrayList<>()).add(input);
-            if (!groups.containsKey(input1)) {
-                ArrayList arr = new ArrayList<>();
-                arr.add(input1);
-                groups.put(input1, arr);
+            if (!groups.containsKey(input)) {
+                List<String> arr = new ArrayList<>();
+                arr.add(input);
+                groups.put(input, arr);
             } else {
-                groups.get(input1).add(input1);
+                groups.get(input).add(input);
             }
         }
         return groups;
