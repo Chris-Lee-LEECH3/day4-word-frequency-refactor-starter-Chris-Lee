@@ -1,4 +1,3 @@
-import javax.management.ValueExp;
 import java.util.*;
 
 public class WordFrequencyGame {
@@ -45,7 +44,7 @@ public class WordFrequencyGame {
         Map<String, Integer> groups = new HashMap<>();
         for (String word : words) {
             groups.computeIfPresent(word, (key, count) -> ++count);
-            groups.computeIfAbsent(word, key -> 1);
+            groups.putIfAbsent(word, 1);
         }
         return groups;
     }
